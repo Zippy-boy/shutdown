@@ -1,0 +1,52 @@
+[tool.briefcase]
+project_name = "Shut Down Timer"
+bundle = "com.velingo"
+version = "0.0.1"
+url = "https://velingo.com/shutdown"
+license = "BSD license"
+author = 'zippt-boy'
+author_email = "zippy-boy@outlook.com"
+
+[tool.briefcase.app.shutdown]
+formal_name = "Shut Down Timer"
+description = "Shut down pc after given time"
+icon = "src/shutdown/resources/shutdown"
+sources = ['src/shutdown']
+requires = [
+]
+
+
+[tool.briefcase.app.shutdown.macOS]
+requires = [
+    'toga-cocoa>=0.3.0.dev32',
+    'std-nslog==1.0.0'
+]
+
+[tool.briefcase.app.shutdown.linux]
+requires = [
+    'toga-gtk>=0.3.0.dev32',
+]
+system_requires = [
+    'libgirepository1.0-dev',
+    'libcairo2-dev',
+    'libpango1.0-dev',
+    'libwebkitgtk-3.0-0',
+    'gir1.2-webkit-3.0',
+]
+
+[tool.briefcase.app.shutdown.windows]
+requires = [
+    'toga-winforms>=0.3.0.dev32',
+]
+
+# Mobile deployments
+[tool.briefcase.app.shutdown.iOS]
+requires = [
+    'toga-iOS>=0.3.0.dev32',
+    'std-nslog==1.0.0'
+]
+
+[tool.briefcase.app.shutdown.android]
+requires = [
+    'toga-android>=0.3.0.dev32'
+]

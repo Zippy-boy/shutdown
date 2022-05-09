@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Briefcase-Version: 0.3.6
+Name: shutdown
+Formal-Name: Shut Down Timer
+App-ID: com.velingo.shutdown
+Version: 0.0.1
+Home-page: https://velingo.com/shutdown
+Author: zippt-boy
+Author-email: zippy-boy@outlook.com
+Summary: Shut down pc after given time
