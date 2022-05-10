@@ -19,6 +19,9 @@ class shutdown(toga.App):
         We then create a main window (with a name matching the app), and
         show the main window.
         """
+
+        
+
         self.veiw_box = toga.Box(style=Pack(direction=COLUMN))
         self.main_box = toga.Box(style=Pack(direction=COLUMN))
         TIME_SELECTION = toga.Box(style=Pack(direction=COLUMN))
@@ -99,9 +102,12 @@ class shutdown(toga.App):
         A_minute = str(self.A_minute_input.value)
         A_hour = A_hour.zfill(2)
         A_minute = A_minute.zfill(2)
+        if A_hour == "None":
+            A_hour = "00"
+        if A_minute == "None":
+            A_minute = "00"
         A_time = "%s:%s" % (A_hour, A_minute)
-        if A_time == "None:None":
-            A_time = "00:00"
+
          # get the time 
         now = datetime.now()
         current_time = now.strftime("%H:%M")
@@ -127,31 +133,39 @@ class shutdown(toga.App):
         if difference < 0:
             difference = difference + 86400
 
-        print(difference)
-        progress = toga.ProgressBar(max=difference, value=1)
+        b = difference
 
-        
-        while A_time != current_time:
-            ''' SHUT DOWN'''
+        def asd(num, in_min, in_max, out_min, out_max):
+            return((num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+
+        progress = toga.ProgressBar(max=100, value=0, style=Pack(padding=5, flex=1, font_size=15))
+
+        timeA = toga.Label("Shut down time: %s" % A_time, style=Pack(padding=0, font_size=15))
+        self.main_box.add(progress)
+        self.main_box.add(timeA)
+        while b >= 0:
             now = datetime.now()
             current_time = now.strftime("%H:%M")
-            print("asd")
-            await asyncio.sleep(2)  
+            self.main_box.remove(time_label)
+            time_label = toga.Label("Current Time: %s" % current_time, style=Pack(padding=0, font_size=15))
+            self.main_box.add(time_label)
+
+
+            b = b - 1
+            ayy = (100 - round(asd(b, 1, difference, 1, 100)))
+            print(ayy)
+            if ayy > 100:   ayy = 100
+            progress.value = ayy
+            await asyncio.sleep(1)  
             
 
-        print("!!!TIME!!!")         
+        print("!!!TIME!!!")    
+        self.main_window.close()     
 
 
     async def T_shutdown(self, widget):
-        """
-        Print "Hello <whatever the user typed>" to the console.
-        """
-        if self.name_input.value:
-            name = self.name_input.value
-        else:
-            name = "You fucker didnt type anything!"
+        pass
 
-        self.main_window.info_dialog("Hello")
 
 
 def main():
