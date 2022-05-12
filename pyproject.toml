@@ -1,7 +1,7 @@
 [tool.briefcase]
 project_name = "Shut Down Timer"
 bundle = "com.velingo"
-version = "0.0.1"
+version = "0.2.0"
 url = "https://velingo.com/shutdown"
 license = "BSD license"
 author = 'zippt-boy'
